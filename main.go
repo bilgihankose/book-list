@@ -1,11 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"github.com/gorilla/mux"
 )
 
 func main() {
-	fmt.Println("Hello World!")
+
+	router := mux.NewRouter()
+	router.HandleFunc("/books", getBooks).Methods("GET")
+
 }
 
 type Book struct {
@@ -14,3 +17,5 @@ type Book struct {
 	Author string `json:author`
 	Year   string `json:year`
 }
+
+var books []Book // holding the book records
